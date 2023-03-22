@@ -94,6 +94,14 @@
   line-height: 20px;
 }
 
+@mixin u_600_20 {
+  font-family: "Ubuntu";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 23px;
+}
+
 @mixin u_500_13 {
   font-family: "Ubuntu";
   font-style: normal;

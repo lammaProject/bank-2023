@@ -11,7 +11,13 @@ export function header() {
 
   const btnATM = el('button.header-btn', 'Банкоматы');
   const btnAccounts = el('button.header-btn', 'Счета');
+  btnAccounts.addEventListener('click', () => {
+    document.location.pathname = '/account';
+  });
   const btnValuts = el('button.header-btn', 'Валюта');
+  btnValuts.addEventListener('click', () => {
+    document.location.pathname = '/account/valuts';
+  });
   const btnExit = el('button.header-btn', 'Выйти');
   const allBtn = el('div.header__all-btn', btnATM, btnAccounts, btnValuts, btnExit);
 
@@ -27,6 +33,10 @@ export function header() {
       headerNav.append(allBtn);
       break;
     case `/account/${getCardId}/history-transfer`:
+      headerNav.append(allBtn);
+      break;
+    case '/account/valuts':
+      btnValuts.style.backgroundColor = '#A0C3FF';
       headerNav.append(allBtn);
       break;
     default:

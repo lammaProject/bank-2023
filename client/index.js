@@ -14,6 +14,7 @@ import { listCard } from './listCard/listCard';
 import { lookCard } from './lookCard/loockCard';
 import { cardBalance } from './storyCard/cardBalance';
 import { cardTransfer } from './cardTransfer/cardTransfer';
+import { allValuts } from './valuts/allValuts';
 
 window.addEventListener('beforeunload', () => {
   const head = document.querySelector('.header_nav');
@@ -36,8 +37,13 @@ window.addEventListener('beforeunload', () => {
 
   window.addEventListener('mousedown', (event) => {
     // off transfer
-    const inputTransfer = document?.querySelector('.lookCardNewTransfer__localList');
-    if (!event.target.classList.contains('lookCardNewTransfer__localName') && inputTransfer) {
+    const inputTransfer = document?.querySelector(
+      '.lookCardNewTransfer__localList',
+    );
+    if (
+      !event.target.classList.contains('lookCardNewTransfer__localName')
+      && inputTransfer
+    ) {
       setTimeout(() => {
         const icon = document.querySelector('.js--icon-active');
         icon.classList.remove('js--icon-active');
@@ -112,6 +118,13 @@ window.addEventListener('beforeunload', () => {
     document.body.append(await cardTransfer());
   }
 
+  async function windowValuts() {
+    if (token === null) document.location.pathname = '/';
+    // create
+    document.body.append(headerMount);
+    document.body.append(await allValuts());
+  }
+
   switch (windowUrl) {
     case '/':
       windowEntry();
@@ -127,6 +140,9 @@ window.addEventListener('beforeunload', () => {
       break;
     case `/account/${getCardId}/history-transfer`:
       windowStoryTransfer();
+      break;
+    case '/account/valuts':
+      windowValuts();
       break;
     default:
       windowEntry();
