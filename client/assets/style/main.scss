@@ -1,0 +1,123 @@
+// fonts
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&family=Work+Sans:wght@700&display=swap");
+
+//blocks
+@import "./blocks/header";
+@import "./blocks/entry";
+@import "./blocks/listcard";
+@import "./blocks/lookCard";
+@import "./blocks/storybalance";
+@import "./blocks/cardtransfer";
+
+body {
+  position: relative;
+  margin: 0 auto;
+  font-family: "Work Sans", sans-serif;
+  font-family: "Ubuntu", sans-serif;
+}
+
+h1,
+p,
+h2 {
+  margin: 0;
+  padding: 0;
+}
+
+input {
+  outline: 0;
+  padding: 0;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+li {
+  list-style-type: none;
+}
+
+ul {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+button {
+  padding: 0;
+  border: 0;
+}
+
+// * {
+//   cursor: url("data:image/svg+xml,%3Csvg width='25' height='24' viewBox='0 0 25 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_1_999)'%3E%3Cpath d='M3.52405 3L21.524 10.53V11.51L14.684 14.16L12.044 21H11.064L3.52405 3Z' fill='%23182233'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_1_999'%3E%3Crect width='24' height='24' fill='white' transform='matrix(-1 0 0 1 24.524 0)'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A"),
+//     auto;
+// }
+
+.header--active {
+  transform: translateY(-100px);
+  transition: all 0.3s ease-in-out;
+}
+
+.bottom__icon {
+  position: absolute;
+  right: 20px;
+  top: 7px;
+}
+
+.child--active {
+  position: absolute;
+  animation-name: bye;
+  animation-duration: 0.3s;
+  animation-direction: alternate;
+  transition: all 0.3s ease-in-out;
+}
+
+.child--render {
+  position: absolute;
+  animation-name: hello;
+  animation-duration: 0.3s;
+  animation-direction: alternate;
+  transition: animation 0.3s ease-in-out;
+}
+
+.hello {
+  animation-name: hello;
+  animation-duration: 0.3s;
+  animation-direction: alternate;
+  transition: animation .3s ease-in-out;
+}
+
+.bye {
+  animation-name: bye;
+  animation-duration: 0.3s;
+  animation-direction: alternate;
+  transition: animation .3s ease-in-out;
+}
+
+@keyframes bye {
+  to {
+    transform: translate(-150vh);
+  }
+}
+
+@keyframes hello {
+  from {
+    transform: translate(150vh);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes cardAdd {
+  from {
+    transform: scale(0.5);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}

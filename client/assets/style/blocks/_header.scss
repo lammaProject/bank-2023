@@ -1,0 +1,46 @@
+@import '../addits/colors';
+@import '../addits/buttons';
+@import '../addits/text';
+
+.header_nav {
+    display: flex;
+    justify-content: space-between;
+    max-height: 50px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 25px 50px 25px 50px;
+    background-color: $br-color-primary-color;
+    animation-name: headerOpen;
+    animation-duration: .3s;
+    animation-direction:alternate;
+}
+
+@keyframes headerOpen {
+    from {
+        transform: translateY(-11vh);
+    }
+    to {
+        transform: none;
+    }
+}
+
+.header__all-btn {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-btn {
+    @include btn_normal(16px, '', 'blue');
+    @include  u_500_16;
+}
+
+.header-btn:not(:last-child) {
+    margin-right: 25px;
+}
+
+
+
+
+

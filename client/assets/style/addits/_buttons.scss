@@ -1,0 +1,30 @@
+@import "./colors";
+
+//Buttons
+
+@mixin btn_normal($font, $bgColor: $br-color-white, $color: $br-color-white) {
+  @if ($bgColor == "p") {
+    $bgColor: $br-color-primary-color;
+  }
+
+  @if ($bgColor == "s") {
+    $bgColor: $br-color-secondary4;
+  }
+
+  @if ($color == "blue") {
+    $color: $br-color-primary-color;
+  } @else {
+    $color: $br-color-white;
+  }
+
+  padding: 1 * $font 1.5 * $font;
+  color: $color;
+  background-color: $bgColor;
+  border-radius: 7px;
+  transition: .3s ease-in-out;
+  
+  &:hover {
+    background-color: rgb(160, 195, 255);
+    transition: background-color .3s ease-in-out ;
+  }
+}

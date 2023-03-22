@@ -1,0 +1,23 @@
+@mixin dropdown {
+    margin: 50px;
+    width: 300px;
+    height: 44px;
+    padding: 8px 16px;
+    font-size: 16px;
+    border: 1px solid #9CA3AF;
+    border-radius: 7px;
+    height: 34px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url("data:image/svg+xml,%3Csvg width='10' height='5' viewBox='0 0 24 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 8.5L12 13.5L17 8.5H7Z' fill='%23182233'/%3E%3C/svg%3E%0A") 96% / 15% no-repeat white;
+}
+
+@mixin input {
+    width: 300px;
+    height: 44px;
+    font-size: 16px;
+    border: 1px solid #9CA3AF;
+    border-radius: 7px;
+    height: 34px;
+}

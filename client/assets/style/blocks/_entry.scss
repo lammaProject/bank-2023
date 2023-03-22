@@ -1,0 +1,45 @@
+@import "../addits/colors";
+@import "../addits/text";
+@import "../addits/buttons";
+
+.entry_card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 500px;
+  min-height: 366px;
+  margin: 0 auto;
+}
+
+.entry_title {
+  width: 100%;
+  @include w_700_34();
+  text-align: center;
+}
+
+.form {
+  width: 375px;
+  height: auto;
+}
+
+.entry_press {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.entry_label {
+  @include u_500_16();
+  margin-right: 18px;
+}
+
+.entry_input {
+  max-width: 300px;
+  max-height: 44px;
+}
+
+.entry_btn {
+  @include btn_normal(14px, "p", "");
+  margin-top: auto;
+}

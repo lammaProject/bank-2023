@@ -1,0 +1,16 @@
+@import "../addits/colors";
+@import "../addits/text";
+@import "../addits/buttons";
+@import "../addits/dropdown";
+
+.cardTransfer {
+ padding: 0 50px;   
+ display: flex;
+ flex-direction: column;
+}
+
+.transfer__more {
+    @include btn_normal(16px, 'p', '');
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

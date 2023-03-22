@@ -1,0 +1,347 @@
+@import "../addits/colors";
+@import "../addits/text";
+@import "../addits/buttons";
+@import "../addits/dropdown";
+
+.lookCard__all {
+  padding: 0 50px;
+}
+
+// HEADER
+
+.lookCardHeader__all {
+  margin-bottom: 50px;
+  animation-name: cardAdd;
+  animation-duration: 0.5s;
+  animation-direction: alternate;
+}
+
+.lookCardHeader__top {
+  display: flex;
+  align-items: center;
+  margin-top: 39px;
+  margin-bottom: 24px;
+}
+
+.lookCardHeader__title {
+  @include w_700_34;
+}
+
+.lookCardHeader__btn {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  @include u_500_16;
+  @include btn_normal(16px, "p", "");
+  margin-left: auto;
+}
+
+.lookCardHeader__btn > svg {
+  height: 24px;
+  margin-right: 10px;
+}
+
+.lookCardHeader__bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.lookCardHeader__id {
+  @include w_400_34;
+  width: fit-content;
+}
+
+.lookCardHeader__balance {
+  width: fit-content;
+  display: flex;
+}
+
+.lookCardHeader__balance-text {
+  @include u_700_20;
+}
+
+.lookCardHeader__balance-number {
+  @include u_400_20;
+  margin-left: 50px;
+}
+
+// CONTENT
+
+.lookCardContent__container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+// GRAPHIC
+
+.lookCardGraph__container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 583px;
+  padding: 25px 50px 50px 50px;
+  background: #ffffff;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 50px;
+  animation-name: cardAdd;
+  animation-duration: 0.5s;
+  animation-direction: alternate;
+}
+
+.loogCardGraph__width-container {
+  width: 100%;
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.lookCardGraph__width {
+  width: 510px;
+  height: 165px;
+  margin-right: 24px;
+  border: 1px solid black;
+}
+
+.lookCardGraph__title {
+  width: 100%;
+  @include u_700_20;
+  margin-bottom: 25px;
+}
+
+.lookCardGraph__maxMin {
+  @include u_500_20;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.lookCardGraph__month {
+  display: flex;
+  gap: 35px;
+  margin-left: 50px;
+}
+
+.lookCardGraph__nameMonth {
+  @include u_700_20;
+}
+
+// TRANSFER
+
+.lookCardNewTransfer__container {
+  width: 500px;
+  min-height: 271px;
+  padding: 25px 50px;
+  display: flex;
+  flex-wrap: wrap;
+  background: $br-color-secondary3;
+  border-radius: 50px;
+  animation-name: cardAdd;
+  animation-duration: 0.5s;
+  animation-direction: alternate;
+}
+
+.lookCardNewTransfer__title {
+  @include u_700_20;
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+.lookCardNewTransfer__all-account {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.lookCardNewTransfer__numAccount {
+  @include u_500_16;
+}
+
+.lookCardNewTransfer__dropdown {
+  @include input;
+  width: 290px;
+  margin: 0;
+  padding: 0;
+}
+
+.lookCardNewTransfer__all-transfer {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-bottom: 25px;
+}
+
+.lookCardNewTransfer__dropdown-svg {
+  position: relative;
+}
+
+.lookCardNewTransfer__sum-title {
+  @include u_500_16;
+  margin-right: 18px;
+}
+
+.lookCardNewTransfer__sum-input {
+  @include input;
+  width: 290px;
+}
+
+.lookCardNewTransfer__btn {
+  display: flex;
+  align-items: center;
+  @include btn_normal(16px, "p", "");
+  margin-left: 206px;
+}
+
+.lookCardNewTransfer__btn > svg {
+  min-width: 24px;
+  min-height: 24px;
+  margin-right: 10px;
+}
+
+// local
+
+.lookCardNewTransfer__localList {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 20px;
+  background-color: #ffffff;
+  border-radius: 7px;
+  padding: 8px 0;
+  filter: drop-shadow(0px 5px 20px rgba(0, 0, 0, 0.25));
+}
+
+.lookCardNewTransfer__localName {
+  color: $gr-color-gray2;
+  padding: 10px 16px;
+  &:hover {
+    background-color: $br-color-secondary3;
+  }
+  transition: all 0.3s ease-in-out;
+}
+
+.js--icon-active {
+  transform: rotate(180deg);
+}
+
+// HISTORY
+
+.lookCardHistory__container {
+  width: 100%;
+  margin-top: 50px;
+  animation-name: cardAdd;
+  animation-duration: 0.5s;
+  animation-direction: alternate;
+}
+
+.minus {
+  color: $br-color-secondary4;
+}
+
+.plus {
+  color: $st-color-success;
+}
+
+.lookCardHistory__title {
+  @include u_700_20;
+  margin-bottom: 25px;
+}
+
+.lookCardHistory__table {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.lookCardhistory__table-th {
+  @include u_500_20;
+  padding: 20px 0;
+  color: $br-color-white;
+  width: fit-content;
+  text-align: left;
+  background: #116acc;
+  &:first-child {
+    width: 30%;
+    border-radius: 15px 0 0 15px;
+    padding-left: 100px;
+  }
+  &:nth-child(3) {
+    width: 14%;
+  }
+  &:last-child {
+    width: 38%;
+    border-radius: 0 15px 15px 0;
+  }
+}
+
+.lookCardHistory__tr {
+  border-bottom: 1pt solid #0052ff1a;
+  & > td:first-child {
+    padding-left: 100px;
+  }
+}
+
+.lookCardHistory__item {
+  @include u_400_16;
+  padding-top: 21px;
+  padding-bottom: 26px;
+  animation-name: add;
+  animation-duration: .8s;
+  animation-direction: alternate;
+}
+
+@keyframes add {
+  from {
+    transform:scale(.5);
+  }
+  to {
+    transform: scale(1)
+  }
+}
+
+//animate
+.transfer--active {
+  position: relative;
+}
+
+.mail--active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  animation-name: an;
+  animation-duration: .8s;
+  animation-direction: alternate;
+}
+
+@keyframes an {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+// .mail--none {
+//   transform: none;
+//   transition: all .3s ease-in-out;
+// }
+
+// @keyframes ff {
+//   0% {
+//     transform: scale(1);
+//   }
+//   40% {
+//     transform: scale(1.1);
+//   }
+//   80% {
+//     transform: scale(1.2);
+//   }
+//   100% {
+//     transform: scale(1);
+//   }
+// }
