@@ -190,7 +190,7 @@ app.post('/currency-buy', authCheck, (req, res) => {
   const myCurrencies = data.mine.currencies || {};
 
   const amount = Number(rawAmount);
-
+  console.log(KNOWN_CURRENCY_CODES);
   if (!KNOWN_CURRENCY_CODES.includes(from) || !KNOWN_CURRENCY_CODES.includes(to)) {
     res.end(response(null, 'Unknown currency code'));
     return;

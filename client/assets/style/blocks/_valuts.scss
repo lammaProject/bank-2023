@@ -42,15 +42,14 @@
 }
 
 .yourValuts__line {
-    width: 100%;
-    border-bottom: 1px dotted black;
+  width: 100%;
+  border-bottom: 1px dotted black;
 }
 .yourValuts__nameVal {
   @include u_600_20;
   letter-spacing: 0.1em;
   margin-right: 10px;
 }
-
 
 .yourValuts__amountVal {
   @include u_400_20;
@@ -136,25 +135,21 @@
 }
 
 .transferValuts__fromDiv {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.transferValuts__from {
-  @include input;
-  width: auto;
-  margin-right: 20px;
-}
-
 .transferValuts__toDiv {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .transferValuts__left {
-    width: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   margin-right: 25px;
@@ -162,7 +157,13 @@
 
 .transferValuts__to {
   @include input;
-  width: auto;
+  -webkit-appearance: none; /* Для Safari и Chrome */
+  -moz-appearance: none; /* Для Firefox */
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6"><path d="M0 0.5L5 5.5L10 0.5H0Z" fill="%23182233"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 1.5em; /* Для отступа текста от правого края */
 }
 
 .transferValuts__sumDiv {
@@ -172,9 +173,26 @@
 
 .transferValuts__sum {
   @include input;
-  width: 100%; }
+  width: 100%;
+}
 
 .transferValuts__button {
   width: auto;
   @include btn_normal(16px, "p", "");
 }
+
+.transferValuts__from {
+  @include input;
+  -webkit-appearance: none; /* Для Safari и Chrome */
+  -moz-appearance: none; /* Для Firefox */
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6"><path d="M0 0.5L5 5.5L10 0.5H0Z" fill="%23182233"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 1.5em; /* Для отступа текста от правого края */
+}
+
+// .transferValuts__svgButtom {
+//   position: absolute;
+//   right: 20px;
+// }

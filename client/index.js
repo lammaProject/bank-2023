@@ -125,6 +125,7 @@ window.addEventListener('beforeunload', () => {
     document.body.append(await allValuts());
   }
 
+  // ROUTE
   switch (windowUrl) {
     case '/':
       windowEntry();
