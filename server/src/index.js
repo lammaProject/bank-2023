@@ -55,8 +55,9 @@ const KNOWN_CURRENCY_CODES = Object.freeze([
 ]);
 
 let currencyFeedSubscribers = [];
-
 const data = readData();
+const IMG_PROFILE = {
+};
 
 pregenerateMineCurrencies(data, KNOWN_CURRENCY_CODES);
 premakeAccounts(data, KNOWN_OTHER_ACCOUNTS);
@@ -71,7 +72,7 @@ function authCheck(req, res, next) {
 }
 
 app.use(cors());
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '20mb' }));
 
 // app.get('/', (req, res) => {
 //   res.send('Backend is working');
@@ -107,6 +108,21 @@ app.get('/account/:id', authCheck, (req, res) => {
     return;
   }
   res.end(response(null, 'No such account'));
+});
+
+app.post('/profileImg', (req, res) => {
+  const { src, transform, left } = req.body;
+  console.log(req.body, data);
+  IMG_PROFILE.transform = transform;
+  IMG_PROFILE.left = left;
+  IMG_PROFILE.src = src;
+  data.img = IMG_PROFILE;
+  writeData(data);
+  res.end('Успшеный');
+});
+
+app.get('/profileImgGet', (req, res) => {
+  res.end(response(data.img));
 });
 
 app.post('/create-account', authCheck, (req, res) => {

@@ -196,3 +196,13 @@
 //   position: absolute;
 //   right: 20px;
 // }
+
+.valutsFrom {
+  background-color: #FD4E5D;
+  transition: background-color .3s ease-in-out;
+}
+
+.valutsTo {
+  background-color: #76CA66;
+    transition: all .3s ease-in-out;
+}

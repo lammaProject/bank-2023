@@ -38,7 +38,7 @@ export async function transferValuts() {
     const dat = await postCurrencyBuy(from.value, to.value, Number(sum.value));
     const yourVal = document.querySelector('.yourValuts__container');
     const middleLeft = document.querySelector('.allValuts__middle');
-    const newYour = await yourValuts();
+    const newYour = await yourValuts(from.value, to.value);
     yourVal.remove();
     middleLeft.prepend(newYour);
 

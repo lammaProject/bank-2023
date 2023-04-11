@@ -84,3 +84,16 @@
   @include btn_normal(16px, "p", "");
   margin-left: auto;
 }
+
+@media(min-width: 1600px) {
+  .listCard-cardList {
+    justify-content: center;
+  }
+  .card:not(:nth-child(3n)) {
+    margin-right: 70px;
+  }
+ .card:not(:nth-child(7n)) {
+  margin-right: 70px;
+ }
+ 
+}

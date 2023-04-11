@@ -18,6 +18,8 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-ws": "^5.0.2",
+    "mapbox-gl": "^2.13.0",
+    "mapbox-gl-geocoder": "^2.0.1",
     "normalize.css": "^8.0.1"
   },
   "devDependencies": {

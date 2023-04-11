@@ -12,19 +12,19 @@
     left: 0;
     padding: 25px 50px 25px 50px;
     background-color: $br-color-primary-color;
-    animation-name: headerOpen;
-    animation-duration: .3s;
-    animation-direction:alternate;
+    // animation-name: headerOpen;
+    // animation-duration: .3s;
+    // animation-direction:alternate;
 }
 
-@keyframes headerOpen {
-    from {
-        transform: translateY(-11vh);
-    }
-    to {
-        transform: none;
-    }
-}
+// @keyframes headerOpen {
+//     from {
+//         opacity: 1;
+//     }
+//     to {
+//         opacity: 0;
+//     }
+// }
 
 .header__all-btn {
     display: flex;
@@ -40,7 +40,25 @@
     margin-right: 25px;
 }
 
+.header__divProfile {
+    position: absolute;
+    top: 0;
+    left: 500px;
+    width: 92px;
+    height: 92px;
+    border-radius: 10px;
+    overflow: hidden;
+    border-radius: 50%;
+}
 
-
+.header__profileImg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 92px;
+    height: 92px;
+    object-fit: cover;
+    transform-origin: top left;
+}
 
 

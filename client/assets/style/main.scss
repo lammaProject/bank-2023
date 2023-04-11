@@ -4,11 +4,13 @@
 //blocks
 @import "./blocks/header";
 @import "./blocks/entry";
+@import "./blocks/profile";
 @import "./blocks/listcard";
 @import "./blocks/lookCard";
 @import "./blocks/storybalance";
 @import "./blocks/cardtransfer";
 @import "./blocks/valuts";
+@import "./blocks/bankmap";
 
 body {
   position: relative;
@@ -57,10 +59,10 @@ button {
 //     auto;
 // }
 
-.header--active {
-  transform: translateY(-100px);
-  transition: all 0.3s ease-in-out;
-}
+// .header--active {
+//   transform: translateY(-100px);
+//   transition: all 0.3s ease-in-out;
+// }
 
 .bottom__icon {
   position: absolute;
@@ -68,48 +70,49 @@ button {
   top: 7px;
 }
 
-.child--active {
-  position: absolute;
-  animation-name: bye;
-  animation-duration: 0.3s;
-  animation-direction: alternate;
-  transition: all 0.3s ease-in-out;
-}
+// .child--active {
+//   position: absolute;
+//   animation-name: bye;
+//   animation-duration: 0.3s;
+//   animation-direction: alternate;
+//   transition: all 0.3s ease-in-out;
+// }
 
-.child--render {
-  position: absolute;
-  animation-name: hello;
-  animation-duration: 0.3s;
-  animation-direction: alternate;
-  transition: animation 0.3s ease-in-out;
-}
+// .child--render {
+//   position: absolute;
+//   animation-name: hello;
+//   animation-duration: 0.3s;
+//   animation-direction: alternate;
+//   transition: animation 0.3s ease-in-out;
+// }
 
-.hello {
-  animation-name: hello;
-  animation-duration: 0.3s;
-  animation-direction: alternate;
-  transition: animation .3s ease-in-out;
-}
+// .hello {
+//   animation: hello 1s ease-in-out;
+// }
 
-.bye {
-  animation-name: bye;
-  animation-duration: 0.3s;
-  animation-direction: alternate;
-  transition: animation .3s ease-in-out;
-}
+// .bye {
+//  animation: bye 1s ease-in-out;
+// }
 
 @keyframes bye {
-  to {
-    transform: translate(-150vh);
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(50px);
   }
 }
 
 @keyframes hello {
-  from {
-    transform: translate(150vh);
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
   }
-  to {
-    transform: none;
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

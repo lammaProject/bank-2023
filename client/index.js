@@ -15,12 +15,12 @@ import { lookCard } from './lookCard/loockCard';
 import { cardBalance } from './storyCard/cardBalance';
 import { cardTransfer } from './cardTransfer/cardTransfer';
 import { allValuts } from './valuts/allValuts';
+import { bankMap } from './bankMap/bankMap';
+import { profile } from './profile/profile';
 
 window.addEventListener('beforeunload', () => {
-  const head = document.querySelector('.header_nav');
   const child = document.body.children[1];
   child.classList.add('child--active');
-  head.classList.add('header--active');
 });
 
 (async function Main() {
@@ -60,6 +60,8 @@ window.addEventListener('beforeunload', () => {
 
   async function windowEntry() {
     // CREATE
+    if (token !== null) document.location.pathname = '/account';
+
     const {
       card, loginInput, passworlInput, btn,
     } = entry();
@@ -86,6 +88,12 @@ window.addEventListener('beforeunload', () => {
         document.location.pathname = '/account';
       }
     });
+  }
+
+  function windowProfile() {
+    if (token === null) document.location.pathname = '/';
+    document.body.append(headerMount);
+    document.body.append(profile());
   }
 
   async function windowListCard() {
@@ -125,10 +133,20 @@ window.addEventListener('beforeunload', () => {
     document.body.append(await allValuts());
   }
 
+  async function windowMap() {
+    if (token === null) document.location.pathname = '/';
+    // create
+    document.body.append(headerMount);
+    document.body.append(await bankMap());
+  }
+
   // ROUTE
   switch (windowUrl) {
     case '/':
       windowEntry();
+      break;
+    case '/profile':
+      windowProfile();
       break;
     case '/account':
       windowListCard();
@@ -144,6 +162,9 @@ window.addEventListener('beforeunload', () => {
       break;
     case '/account/valuts':
       windowValuts();
+      break;
+    case '/account/map':
+      windowMap();
       break;
     default:
       windowEntry();
