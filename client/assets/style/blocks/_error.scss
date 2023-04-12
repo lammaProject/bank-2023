@@ -1,0 +1,32 @@
+@import "../addits/colors";
+
+.errorApi__div {
+  display: flex;
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  width: 300px;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  padding: 15px;
+  border: 1px solid $st-color-error;
+  background-color: $br-color-secondary4;
+}
+
+.errorApi__tooltipCont {
+  position: relative;
+}
+
+.errorApi__tooltip {
+  position: absolute;
+  min-width: 100px;
+  bottom: 50px;
+  left: -50px;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: beige;
+  -webkit-box-shadow: 0px 26px 8px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 0px 26px 8px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 0px 26px 8px 0px rgba(34, 60, 80, 0.2);
+}

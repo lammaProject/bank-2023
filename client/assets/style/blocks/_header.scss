@@ -40,15 +40,53 @@
     margin-right: 25px;
 }
 
+.header__divDivProfile {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    height: 100px;
+    align-self: center;
+    margin-right: auto;
+    margin-left: 200px;
+    padding: 0 10px 0 10px;
+    background-color: white;
+    border-radius: 25px 25px 0px 0px;
+    transition: all .3s ease-in-out;
+}
+
+.header__divDivProfile:hover {
+    color: white;
+    background-color: #182233;
+    transition: all .3s ease-in-out;
+}
+
+.header__profiledate {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 10px;
+    margin-left: 150px;
+}
+
+.header__hi {
+    @include u_400_18;
+    width: 100%;
+    text-align: center;
+}
+
+.header__profileName {
+    @include u_400_13;
+}
+
 .header__divProfile {
     position: absolute;
-    top: 0;
-    left: 500px;
+    top: 3px;
     width: 92px;
     height: 92px;
     border-radius: 10px;
     overflow: hidden;
     border-radius: 50%;
+    background-color: white;
 }
 
 .header__profileImg {

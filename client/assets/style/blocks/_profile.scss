@@ -3,66 +3,158 @@
 @import "../addits/buttons";
 @import "../addits/dropdown";
 
-// .profileCard__control {
-//   position: absolute;
-//   cursor: grab;
-//   top: 0;
-//   left: 0;
-//   bottom: 0;
-// }
+.profileCard__container {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 25px;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.7);
+  border-radius: 13px;
+  background-color: #182233;
+  transition: background-color 0.3s ease-in-out;
+  z-index: 2;
+}
 
-// .profileCard__divControl {
-//   position: relative;
-//   max-width: 100px;
-//   height: 10px;
-//   background-color: black;
-// }
+.profileCard__container::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  top: 9px;
+  left: 15px;
+  right: 244vh;
+  bottom: 8px;
+  opacity: 0.5;
+  border-radius: 10px;
+  border: 1px solid black;
+  background-color: white;
+  z-index: 1;
+}
+
+.profileCard__divTop {
+  width: 100%;
+  max-width: 345px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.profileCard__h1 {
+  position: relative;
+  @include u_500_22;
+  z-index: 3;
+}
 
 .profileCard__divImg {
-    position: relative;
-    width: 100%;
-    height: 0;
-    padding-bottom: 15%; /* 16:9 aspect ratio */
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 15%; /* 16:9 aspect ratio */
+  margin-left: 40px;
 }
 
 .profileCard__circle {
-    position: absolute;
+  position: absolute;
   top: 0;
   left: 0;
   width: 265px;
   height: 265px;
   border-radius: 10px;
   overflow: hidden;
+  z-index: 2;
 }
 
-
 .profileCard__circle::after {
-    content: "";
-    pointer-events: none;
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    width: 221px;
-    height: 221px;
-    opacity: .9;
-    border: 5px solid white;
-    box-shadow: 0 0 0 87px black;
-    border-radius: 100%;
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 221px;
+  height: 221px;
+  opacity: 0.9;
+  border: 5px solid white;
+  box-shadow: 0 0 0 87px black;
+  border-radius: 100%;
+  z-index: 3;
 }
 
 .profileCard__circle img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 265px;
-    height: 265px;
-    object-fit: cover;
-    transform-origin: top left;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 265px;
+  height: 265px;
+  object-fit: cover;
+  transform-origin: top left;
+  z-index: 3;
 }
 
 .profileCard__control {
+  width: 15%;
+  position: absolute;
+  bottom: -44px;
+  left: 0;
+  z-index: 3;
+}
+
+.profileCard__divBottom {
+  position: relative;
+  width: 100%;
+  max-width: 345px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 60px;
+  z-index: 3;
+}
+
+.profileCard__saveImg {
+  @include btn_normal(16px, "p", "");
+}
+
+.divCost {
+  position: relative;
+}
+
+.label-cast {
+  @include btn_normal(16px, "", "blue");
+  cursor: pointer;
+}
+
+#addImg {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.loader--profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader--profile svg {
+  animation: rotate 2s linear infinite;
+}
+
+.loader__change--profile {
     position: absolute;
-    bottom: 0;
     left: 0;
-    width: 100%;
+    right: 0;
+    top: 35%;
+    bottom: 0;
+    text-align: center;
+}
+
+.loader__change--profile svg {
+    animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

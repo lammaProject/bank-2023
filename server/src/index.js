@@ -111,11 +111,29 @@ app.get('/account/:id', authCheck, (req, res) => {
 });
 
 app.post('/profileImg', (req, res) => {
-  const { src, transform, left } = req.body;
-  console.log(req.body, data);
-  IMG_PROFILE.transform = transform;
-  IMG_PROFILE.left = left;
-  IMG_PROFILE.src = src;
+  const {
+    src, transform, left, top,
+  } = req.body;
+  if (src === undefined) {
+    IMG_PROFILE.src = data.img.src;
+  } else {
+    IMG_PROFILE.src = src;
+  }
+  if (left === undefined) {
+    IMG_PROFILE.left = data.img.left;
+  } else {
+    IMG_PROFILE.left = left;
+  }
+  if (transform === undefined) {
+    IMG_PROFILE.transform = data.img.transform;
+  } else {
+    IMG_PROFILE.transform = transform;
+  }
+  if (top === undefined) {
+    IMG_PROFILE.top = data.img.top;
+  } else {
+    IMG_PROFILE.top = top;
+  }
   data.img = IMG_PROFILE;
   writeData(data);
   res.end('Успшеный');
@@ -125,7 +143,7 @@ app.get('/profileImgGet', (req, res) => {
   res.end(response(data.img));
 });
 
-app.post('/create-account', authCheck, (req, res) => {
+app.post('/create-account', (req, res) => {
   const newAccount = makeAccount(true);
   data.accounts[newAccount.account] = newAccount;
   writeData(data);

@@ -6,6 +6,7 @@ import { el } from 'redom';
 import mapboxgl from 'mapbox-gl';
 import MapboxGeocoder from 'mapbox-gl-geocoder';
 import { banks } from '../api/banks';
+import { errorApi } from '../error/errorApi';
 
 export async function bankMap() {
   const title = el('h1.bankMap__title', 'Карта банкоматов');

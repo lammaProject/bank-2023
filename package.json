@@ -20,7 +20,8 @@
     "express-ws": "^5.0.2",
     "mapbox-gl": "^2.13.0",
     "mapbox-gl-geocoder": "^2.0.1",
-    "normalize.css": "^8.0.1"
+    "normalize.css": "^8.0.1",
+    "stream-browserify": "^3.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
