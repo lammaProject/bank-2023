@@ -19,7 +19,8 @@ export function listCardNav() {
     const sortArr = [];
 
     allCard.forEach((item) => {
-      const date = item.getAttribute('date') === null ? 0 : Date.parse(new Date());
+      const date = item.getAttribute('date') === null ? 0 : Date.parse(item.getAttribute('date'));
+      // console.log(Date.parse(item.getAttribute('date')));
       sortArr.push({ balance: Number(item.getAttribute('balance')), id: item.getAttribute('id'), date });
     });
 
@@ -35,6 +36,7 @@ export function listCardNav() {
 
     for (let i = 0; i < sortArr.length; i++) {
       const ch = cardList.children[i].getAttribute('id');
+      console.log(sortArr);
       if (ch === sortArr[0].id) {
         cardList.append(cardList.children[i]);
         sortArr.shift();
@@ -54,6 +56,7 @@ export function listCardNav() {
       const card = el('li.card', cardAc, balance, btnCard);
       cardList.append(card);
     }
+
     await createCard();
   });
 

@@ -7,6 +7,8 @@ import 'normalize.css';
 import './assets/style/main.scss';
 import axios from 'axios';
 import { el } from 'redom';
+
+import customSelect from 'custom-select';
 import { getCardId } from './utils';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { header } from './header/header';
@@ -26,6 +28,42 @@ window.addEventListener('beforeunload', () => {
   const child = document.body.children[1];
   child.classList.add('child--active');
 });
+
+export function alert(name, status) {
+  if (status === 'warning') {
+    const warnIcon = el('svg.icon--warning');
+    warnIcon.innerHTML += `
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g clip-path="url(#clip0_1_901)">
+    <path d="M12 3.94365L22.2338 21L1.76619 21L12 3.94365Z" fill="#BA0000" stroke="#BA0000" stroke-width="2"/>
+    <path d="M12 10L12 15M12 18L12 16.5" stroke="white" stroke-width="2"/>
+    </g>
+    <defs>
+    <clipPath id="clip0_1_901">
+    <rect width="24" height="24" fill="white"/>
+    </clipPath>
+    </defs>
+    </svg>
+    
+    `;
+    const text = el('p.text-warning', name);
+    const war = el('div.warningMain', warnIcon, text);
+    return war;
+  }
+
+  if (status === 'success') {
+    const successIcon = el('svg.icon--success');
+    successIcon.innerHTML += `
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 22C6.47967 21.994 2.00606 17.5204 2 12V11.8C2.10993 6.30455 6.63459 1.92797 12.1307 2.0009C17.6268 2.07382 22.0337 6.5689 21.9978 12.0654C21.9619 17.5618 17.4966 21.9989 12 22ZM7.41 11.59L6 13L10 17L18 9.00002L16.59 7.58002L10 14.17L7.41 11.59Z" fill="#76CA66"/>
+    </svg>
+    `;
+
+    const text = el('p.text--success', name);
+    const suc = el('div.successMain', successIcon, text);
+    return suc;
+  }
+}
 
 export function mainload() {
   const loader = el('svg.loader--profile');
@@ -71,6 +109,7 @@ export function mainload() {
         inputTransfer.remove();
       }, 100);
     }
+
     // get card id
     if (event.target.classList.contains('card__btn')) {
       const cardId = event.target.parentElement.firstElementChild.textContent;
@@ -103,10 +142,34 @@ export function mainload() {
       const answer = await getLogin();
 
       if (answer.error === '') {
+        loginInput.parentElement.append(alert('Отлично!', 'success'));
+        passworlInput.parentElement.append(alert('Отлично!', 'success'));
+        passworlInput.classList.add('entry__input--success');
+        loginInput.classList.add('entry__input--success');
+        btn.classList.add('btn--lock');
         const tok = answer.payload.token;
         localStorage.setItem('authorization', JSON.stringify(tok));
         localStorage.setItem('profileName', JSON.stringify(loginInput.value));
         document.location.pathname = '/account';
+      } else {
+        switch (answer.error) {
+          case 'No such user':
+            loginInput.parentElement.append(alert('Неправильный логин', 'warning'));
+            loginInput.classList.add('entry__input--error');
+            break;
+          case 'Invalid password':
+            passworlInput.parentElement.append(alert('Неправильный пароль', 'warning'));
+            passworlInput.classList.add('entry__input--error');
+            break;
+          default:
+            loginInput.parentElement.append(alert('Неправильный логин', 'warning'));
+            passworlInput.parentElement.append(alert('Неправильный пароль', 'warning'));
+            loginInput.classList.add('entry__input--error');
+            passworlInput.classList.add('entry__input--error');
+            break;
+        }
+
+        btn.classList.add('btn--lock');
       }
     });
   }
@@ -125,6 +188,7 @@ export function mainload() {
     document.body.append(headerMount);
     document.body.append(await listCard().then((res) => { document.body.firstElementChild.remove(); return res; }));
     renderItems();
+    customSelect('select');
   }
 
   async function windowLookcard() {
@@ -158,6 +222,7 @@ export function mainload() {
     document.body.append(mainload());
     document.body.append(headerMount);
     document.body.append(await allValuts().then((res) => { document.body.firstElementChild.remove(); return res; }));
+    customSelect('select');
   }
 
   async function windowMap() {

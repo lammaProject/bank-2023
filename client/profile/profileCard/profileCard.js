@@ -7,7 +7,7 @@ import { el } from 'redom';
 import axios from 'axios';
 import { apiUrl } from '../../url';
 import { getImg } from '../../header/header';
-import { mainload } from '../../index.js';
+import { mainload } from '../../app.js';
 
 function load() {
   const loader = el('svg.loader__change--profile');

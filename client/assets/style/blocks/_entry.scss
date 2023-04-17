@@ -9,6 +9,7 @@
   max-width: 500px;
   min-height: 366px;
   margin: 0 auto;
+  margin-top: 260px;
 }
 
 .entry_title {
@@ -23,6 +24,7 @@
 }
 
 .entry_press {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -30,16 +32,36 @@
 }
 
 .entry_label {
-  @include u_500_16();
+  @include u_500_16;
   margin-right: 18px;
 }
 
 .entry_input {
+  @include u_400_16;
   max-width: 300px;
   max-height: 44px;
+  padding: 10px 0 10px 15px;
+  color: #6B7280;
+  border-radius: 10px;
+  border: none;
+  border: 1px solid #9CA3AF;
+}
+
+.entry {
+  position: relative;
 }
 
 .entry_btn {
   @include btn_normal(14px, "p", "");
   margin-top: auto;
+}
+
+//error
+
+.entry__input--error {
+  border-color: #BA0000;
+}
+
+.entry__input--success {
+  border-color: #76CA66;
 }

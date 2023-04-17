@@ -2,9 +2,12 @@ export const getCardId = JSON.parse(localStorage.getItem('cardId'));
 export const arrAccounts = [];
 export function accountTo(to) {
   let jsonArray;
+
   if (to === undefined) return;
   if (JSON.parse(localStorage.getItem('arrayTo') !== null)) {
     const array = JSON.parse(localStorage.getItem('arrayTo'));
+    // if (array[0] === to) return;
+    if (array.some((u) => u === to)) return;
     array.push(to);
     jsonArray = array;
   } else {

@@ -12,5 +12,6 @@ export async function allValuts() {
   const div = el('div.allValuts__middle', your, transferVal);
   const middleValuts = el('div.allValuts__middleAll', div, nowTime);
   const container = el('section.allValuts__section', h1, middleValuts);
+
   return container;
 }

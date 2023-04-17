@@ -76,6 +76,7 @@
 // GRAPHIC
 
 .lookCardGraph__container {
+  cursor: pointer;
   display: flex;
   flex-wrap: wrap;
   max-width: 583px;
@@ -86,6 +87,12 @@
   animation-name: cardAdd;
   animation-duration: 0.5s;
   animation-direction: alternate;
+  transition: box-shadow .3s ease-in-out;
+}
+
+.lookCardGraph__container:hover {
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, .7);
+  transition: all .3s ease-in-out;
 }
 
 .loogCardGraph__width-container {
@@ -137,6 +144,7 @@
   animation-name: cardAdd;
   animation-duration: 0.5s;
   animation-direction: alternate;
+  transition: all .3s ease-in-out
 }
 
 .lookCardNewTransfer__title {
@@ -159,11 +167,16 @@
 
 .lookCardNewTransfer__dropdown {
   @include input;
-  width: 290px;
+  @include u_400_16;
+  color: #6B7280;
+  width: 280px;
   margin: 0;
-  padding: 0;
+  padding: 10px 0 10px 16px;
 }
-
+.lookCardNewTransfer__dropdown:focus {
+  border-color: #116ACC;
+  transition:border-color .3s ease-in-out ;
+}
 .lookCardNewTransfer__all-transfer {
   display: flex;
   align-items: center;
@@ -182,7 +195,10 @@
 
 .lookCardNewTransfer__sum-input {
   @include input;
-  width: 290px;
+  @include u_400_16;
+  color: #6B7280;
+  width: 280px;
+  padding: 10px 0 10px 16px;
 }
 
 .lookCardNewTransfer__btn {
@@ -204,14 +220,16 @@
   position: absolute;
   left: 0;
   right: 0;
-  top: 20px;
+  top: 45px;
   background-color: #ffffff;
   border-radius: 7px;
   padding: 8px 0;
+  z-index: 50;
   filter: drop-shadow(0px 5px 20px rgba(0, 0, 0, 0.25));
 }
 
 .lookCardNewTransfer__localName {
+  cursor:pointer;
   color: $gr-color-gray2;
   padding: 10px 16px;
   &:hover {
@@ -251,6 +269,8 @@
   display: table;
   width: 100%;
   border-collapse: collapse;
+  margin-bottom: 20px;
+  transition: .3s ease-in-out
 }
 
 .lookCardhistory__table-th {
@@ -272,6 +292,13 @@
     width: 38%;
     border-radius: 0 15px 15px 0;
   }
+}
+
+.lookCardHistory__table:hover {
+  cursor: pointer;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, .7);
+  border-radius: 15px;
+  transition: all .3s ease-in-out;
 }
 
 .lookCardHistory__tr {

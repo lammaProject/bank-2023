@@ -81,16 +81,21 @@ app.use(bodyParser.json({ limit: '20mb' }));
 app.post('/login', (req, res) => {
   const { login, password } = (req.body || {});
 
-  if (login === AUTH_DATA.login) {
-    if (password === AUTH_DATA.password) {
-      res.end(response({ token: AUTH_DATA.token }));
-    } else {
-      res.end(response(null, 'Invalid password'));
-    }
+  if (login !== AUTH_DATA.login && password !== AUTH_DATA.password) {
+    res.end(response(null, 'empty'));
     return;
   }
 
-  res.end(response(null, 'No such user'));
+  if (login === AUTH_DATA.login) {
+    if (password === AUTH_DATA.password) {
+      res.end(response({ token: AUTH_DATA.token }));
+      return;
+    }
+    res.send(response(null, 'Invalid password'));
+    return;
+  }
+
+  res.send(response(null, 'No such user'));
 });
 
 app.get('/accounts', authCheck, (req, res) => {

@@ -126,6 +126,7 @@
 .transferValuts__text {
   @include u_500_16;
   margin-right: 20px;
+  align-self: center;
 }
 
 .transferValuts__up {
@@ -157,6 +158,9 @@
 
 .transferValuts__to {
   @include input;
+  width: 134px;
+  height: auto;
+  padding: 10px 0 10px 15px;
   -webkit-appearance: none; /* Для Safari и Chrome */
   -moz-appearance: none; /* Для Firefox */
   appearance: none;
@@ -174,6 +178,8 @@
 .transferValuts__sum {
   @include input;
   width: 100%;
+  height: auto;
+  padding: 10px 15px;
 }
 
 .transferValuts__button {
@@ -183,6 +189,10 @@
 
 .transferValuts__from {
   @include input;
+  width: 134px;
+  height: auto;
+  padding: 10px 0 10px 15px;
+  margin-right: 20px;
   -webkit-appearance: none; /* Для Safari и Chrome */
   -moz-appearance: none; /* Для Firefox */
   appearance: none;
@@ -192,17 +202,12 @@
   padding-right: 1.5em; /* Для отступа текста от правого края */
 }
 
-// .transferValuts__svgButtom {
-//   position: absolute;
-//   right: 20px;
-// }
-
 .valutsFrom {
-  background-color: #FD4E5D;
-  transition: background-color .3s ease-in-out;
+  background-color: #fd4e5d;
+  transition: background-color 0.3s ease-in-out;
 }
 
 .valutsTo {
-  background-color: #76CA66;
-    transition: all .3s ease-in-out;
+  background-color: #76ca66;
+  transition: all 0.3s ease-in-out;
 }

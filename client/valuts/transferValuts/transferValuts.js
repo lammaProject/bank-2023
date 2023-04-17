@@ -33,6 +33,14 @@ export async function transferValuts() {
     from.append(optionFrom);
     to.append(optionTo);
   }
+  sum.addEventListener('input', (e) => {
+    const regex = /^[0-9b]*$/;
+    const inputText = e.target.value;
+    if (!regex.test(inputText)) {
+      e.target.value = inputText.slice(0, -1);
+    }
+  });
+
   form.addEventListener('submit', (ev) => ev.preventDefault());
   button.addEventListener('click', async () => {
     const dat = await postCurrencyBuy(from.value, to.value, Number(sum.value));

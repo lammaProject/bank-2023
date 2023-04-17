@@ -5,18 +5,20 @@
 
 .listCard__main {
   padding: 0 50px;
+  padding-top: 40px;
 }
 
 .listCard-nav__header {
   display: flex;
   align-items: center;
   animation-name: cardAdd;
-  animation-duration: .5s;
-  animation-direction:alternate;
+  animation-duration: 0.5s;
+  animation-direction: alternate;
 }
 
 .listCard-nav__title {
   @include w_700_34;
+  margin-right: 25px;
 }
 
 .listCard-dropdown {
@@ -39,6 +41,7 @@
 .listCard-cardList {
   display: flex;
   flex-wrap: wrap;
+  margin-top: 50px;
 }
 
 .card {
@@ -52,8 +55,9 @@
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.25);
   border-radius: 9px;
   animation-name: cardAdd;
-  animation-duration: .5s;
-  animation-direction:alternate;
+  animation-duration: 0.5s;
+  animation-direction: alternate;
+  transition: box-shadow .3s ease-in-out;
 }
 
 .card:not(:nth-child(3n)) {
@@ -85,15 +89,23 @@
   margin-left: auto;
 }
 
-@media(min-width: 1600px) {
+.card__btn:hover .card {
+  background-color: red;
+}
+
+@media (min-width: 1600px) {
   .listCard-cardList {
-    justify-content: center;
+   margin-left: 10%;
   }
   .card:not(:nth-child(3n)) {
-    margin-right: 70px;
+    margin-right: 100px;
   }
- .card:not(:nth-child(7n)) {
-  margin-right: 70px;
- }
- 
+  // .card:not(:nth-child(7n)) {
+  //   margin-right: 70px;
+  // }
+}
+
+.card--hover {
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.5);
+  transition: all .3s ease-in-out;
 }

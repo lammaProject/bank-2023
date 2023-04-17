@@ -1,5 +1,6 @@
 // fonts
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&family=Work+Sans:wght@700&display=swap");
+@import "../../../node_modules/custom-select/build/custom-select.css";
 
 //blocks
 @import "./blocks/header";
@@ -54,46 +55,115 @@ button {
   padding: 0;
   border: 0;
 }
+.custom-select-container {
+  width: 300px;
+}
+.custom-select-container:has(.transferValuts__from, .transferValuts__to) {
+  @include u_400_16;
+  width: 149px;
+  color: #374151;
+}
 
-// * {
-//   cursor: url("data:image/svg+xml,%3Csvg width='25' height='24' viewBox='0 0 25 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_1_999)'%3E%3Cpath d='M3.52405 3L21.524 10.53V11.51L14.684 14.16L12.044 21H11.064L3.52405 3Z' fill='%23182233'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_1_999'%3E%3Crect width='24' height='24' fill='white' transform='matrix(-1 0 0 1 24.524 0)'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A"),
-//     auto;
-// }
+.custom-select-opener {
+  white-space: nowrap;
+  height: 2.3em;
+  margin-top: 0.5em;
+  // margin-bottom: 1em;
+  border-radius: 5px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6"><path d="M0 0.5L5 5.5L10 0.5H0Z" fill="%23182233"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-color: white;
+  border: 1px solid #9ca3af;
+}
+.custom-select-container.is-open .custom-select-panel:first-child {
+  display: none;
+}
 
-// .header--active {
-//   transform: translateY(-100px);
-//   transition: all 0.3s ease-in-out;
-// }
+.is-open .custom-select-opener {
+  background-image: url("data:image/svg+xml,%3Csvg width='11' height='6' viewBox='0 0 11 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10.9519 5.5L5.9519 0.5L0.951904 5.5L10.9519 5.5Z' fill='%23182233'/%3E%3C/svg%3E%0A");
+}
+
+.custom-select-opener:focus {
+  outline: none;
+  border-color: #116acc;
+}
+
+.custom-select-opener span {
+  text-overflow: ellipsis;
+  display: block;
+}
+
+.custom-select-option {
+  background-color: white;
+}
+.custom-select-container:has(.listCard-dropdown)
+  .custom-select-option:nth-child(1) {
+  display: none;
+}
+.custom-select-option.has-focus {
+  background-color: #a0c3ff;
+}
+.custom-select-option:hover {
+  cursor: pointer;
+  background-color: #a0c3ff;
+}
+.custom-select-panel {
+  border-radius: 5px;
+  filter: drop-shadow(0px 5px 20px rgba(0, 0, 0, 0.25));
+}
+.custom-select-option.is-selected::before {
+  display: none;
+}
+.custom-select-option.is-selected::after {
+  content: url("data:image/svg+xml,%3Csvg width='18' height='14' viewBox='0 0 18 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.00003 11.17L1.83003 7.00003L0.410034 8.41003L6.00003 14L18 2.00003L16.59 0.590027L6.00003 11.17Z' fill='%23182233'/%3E%3C/svg%3E ");
+  position: absolute;
+  right: 20px;
+}
+.custom-select-panel::-webkit-scrollbar {
+  display: none;
+}
 
 .bottom__icon {
   position: absolute;
   right: 20px;
-  top: 7px;
+  top: 15px;
 }
 
-// .child--active {
-//   position: absolute;
-//   animation-name: bye;
-//   animation-duration: 0.3s;
-//   animation-direction: alternate;
-//   transition: all 0.3s ease-in-out;
-// }
+//error
 
-// .child--render {
-//   position: absolute;
-//   animation-name: hello;
-//   animation-duration: 0.3s;
-//   animation-direction: alternate;
-//   transition: animation 0.3s ease-in-out;
-// }
+.warningMain {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  right: -244px;
+  width: 220px;
+}
 
-// .hello {
-//   animation: hello 1s ease-in-out;
-// }
+.text-warning {
+  @include u_500_16;
+  color: #ba0000;
+}
 
-// .bye {
-//  animation: bye 1s ease-in-out;
-// }
+.btn--lock {
+  pointer-events: none;
+  opacity: .5;
+}
+
+.successMain {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  right: -180px;
+  width: 150px;
+}
+
+.text--success {
+  @include u_500_16;
+  color: #76CA66;
+}
 
 @keyframes bye {
   0% {

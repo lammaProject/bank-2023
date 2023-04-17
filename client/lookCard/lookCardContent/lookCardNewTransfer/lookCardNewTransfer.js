@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable array-callback-return */
 /* eslint-disable import/no-extraneous-dependencies */
 import { el } from 'redom';
@@ -21,8 +22,9 @@ export async function lookCardNewTransfer() {
   const button = el('button.lookCardNewTransfer__btn', mailIcon, 'Отправить');
   const container = el('form.lookCardNewTransfer__container', title, div1, div2, button);
   const array = JSON.parse(localStorage.getItem?.('arrayTo'));
+  const nowArray = [];
   // ACTIVE
-  bottomIcon.addEventListener('click', () => {
+  function addDrop() {
     function off() {
       bottomIcon.classList.remove('js--icon-active');
       dropdownAndSvg.firstElementChild.remove();
@@ -35,8 +37,9 @@ export async function lookCardNewTransfer() {
     // ON
     const list = el('ul.lookCardNewTransfer__localList');
     bottomIcon.classList.add('js--icon-active');
-    if (array !== null) {
-      array.map((i) => {
+
+    function createItems(arr) {
+      arr.map((i) => {
         const item = el('li.lookCardNewTransfer__localName', i);
         // OFF
         item.addEventListener('click', () => {
@@ -46,12 +49,48 @@ export async function lookCardNewTransfer() {
         list.append(item);
       });
     }
+
+    if (array !== null) {
+      let main = [];
+      if (array.length > nowArray.length) {
+        main = array;
+        for (const i of nowArray) {
+          if (!main.some((item) => item === i)) main.push(i);
+        }
+      } else {
+        main = nowArray;
+        for (const i of array) {
+          if (!main.some((item) => item === i)) main.push(i);
+        }
+      }
+      createItems(main);
+    } else {
+      createItems(nowArray);
+    }
+
     dropdownAndSvg.prepend(list);
+  }
+
+  bottomIcon.addEventListener('click', addDrop);
+  numberAccountDropdown.addEventListener('focus', addDrop);
+  numberAccountDropdown.addEventListener('input', (e) => {
+    if (numberAccountDropdown.value !== '') { e.target.parentElement.parentElement.parentElement.classList.add('card--hover'); }
+    if (numberAccountDropdown.value === '' && sumTransferInput.value === '') { e.target.parentElement.parentElement.parentElement.classList.remove('card--hover'); }
   });
-  // container.classList.add('transfer--active');
-  // mailIcon.classList.add('mail--active');
+
+  sumTransferInput.addEventListener('input', (e) => {
+    const regex = /^[0-9b]*$/;
+    const inputText = e.target.value;
+    if (sumTransferInput.value !== '') e.target.parentElement.parentElement.classList.add('card--hover');
+    if (numberAccountDropdown.value === '' && sumTransferInput.value === '') { e.target.parentElement.parentElement.classList.remove('card--hover'); }
+    if (!regex.test(inputText)) {
+      e.target.value = inputText.slice(0, -1);
+    }
+  });
+
   container.addEventListener('submit', async (event) => {
     event.preventDefault();
+
     const from = getCardId;
     const to = numberAccountDropdown.value;
     const amount = sumTransferInput.value;
@@ -61,6 +100,9 @@ export async function lookCardNewTransfer() {
       const res = await transferFunds(from, to, amount);
       const balanceNumber = document.querySelector('.lookCardHeader__balance-number');
       balanceNumber.textContent = String(res.payload.balance);
+
+      if (!nowArray.some((item) => item === to)) nowArray.push(to);
+
       if (array !== null && array.find((val) => val === to) === to) {
         accountTo();
       } else {

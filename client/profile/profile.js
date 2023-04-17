@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable import/no-extraneous-dependencies */
 import { el } from 'redom';
 import { profileCard } from './profileCard/profileCard';

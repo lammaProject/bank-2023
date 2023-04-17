@@ -57,7 +57,7 @@ export async function lookCardGraghic() {
     let dp = num[i];
     if (dp < 20) dp *= 10;
     const myRect = {
-      x: 15 + i * 45, y: 165 - ((165 / 100) * dp), w: 40, h: (165 / 100) * dp,
+      x: 30 + i * 45, y: 165 - ((165 / 100) * dp), w: 40, h: (165 / 100) * dp,
     };
     const timeInterval = 20;
     const thick = 3;

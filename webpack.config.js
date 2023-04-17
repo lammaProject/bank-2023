@@ -6,7 +6,7 @@ const webpack = require('webpack');
 module.exports = {
   mode: 'development',
 
-  entry: './client/index.js',
+  entry: './client/app.js',
 
   output: {
     filename: 'main.[contenthash].js',
