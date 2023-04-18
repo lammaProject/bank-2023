@@ -60,7 +60,7 @@ button {
 }
 .custom-select-container:has(.transferValuts__from, .transferValuts__to) {
   @include u_400_16;
-  width: 149px;
+  width: 110px;
   color: #374151;
 }
 
@@ -172,7 +172,8 @@ button {
 }
 
 .lookCardNewTransfer__error{
-  right: -290px;
+  right: 50px;
+  top: -25px;
 }
 
 //SHADOW
@@ -189,7 +190,7 @@ button {
 .valut--warning {
   position: absolute;
   right: 0;
-  left: 150px;
+  left: 80px;
   top: -25px;
 }
 
