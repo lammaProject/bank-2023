@@ -157,6 +157,10 @@ app.post('/create-account', (req, res) => {
 
 app.post('/create-account/delete', authCheck, (req, res) => {
   const { id } = (req.body || {});
+  if (id === '74213041477477406320783754') {
+    res.end('Этот нельзя удалять');
+    return;
+  }
   delete data.accounts[id];
   writeData(data);
   res.end(response('done'));
