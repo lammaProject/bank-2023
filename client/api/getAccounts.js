@@ -13,7 +13,7 @@ export async function getAccount() {
     return res;
   } catch (err) {
     console.log(err, 'getAccounts.js');
-    document.body.innerHTML = '';
+    document.innerHTML = '';
     document.body.append(errorApi());
   }
 }

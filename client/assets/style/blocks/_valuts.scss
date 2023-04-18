@@ -110,6 +110,7 @@
   border-radius: 50px;
   margin-right: 50px;
   margin-bottom: 50px;
+  transition: box-shadow .3s ease-in-out;
 }
 
 .transferValuts__form {
@@ -130,6 +131,7 @@
 }
 
 .transferValuts__up {
+  position: relative;
   display: flex;
   justify-content: space-between;
   margin-bottom: 25px;
@@ -171,6 +173,7 @@
 }
 
 .transferValuts__sumDiv {
+  position: relative;
   display: flex;
   align-items: center;
 }

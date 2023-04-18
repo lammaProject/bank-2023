@@ -148,7 +148,7 @@ button {
 
 .btn--lock {
   pointer-events: none;
-  opacity: .5;
+  opacity: 0.5;
 }
 
 .successMain {
@@ -162,8 +162,37 @@ button {
 
 .text--success {
   @include u_500_16;
-  color: #76CA66;
+  color: #76ca66;
 }
+
+.card--delete {
+  -webkit-box-shadow: -2px 4px 38px 17px rgba(242, 14, 14, 0.67);
+  -moz-box-shadow: -2px 4px 38px 17px rgba(242, 14, 14, 0.67);
+  box-shadow: -2px 4px 38px 17px rgba(242, 14, 14, 0.67);
+}
+
+.lookCardNewTransfer__error{
+  right: -290px;
+}
+
+//SHADOW
+
+.valut--hover {
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.5);
+  transition: all .3s ease-in-out;
+}
+
+.valutBorder--error {
+  border-color: #ba0000;
+}
+
+.valut--warning {
+  position: absolute;
+  right: 0;
+  left: 150px;
+  top: -25px;
+}
+
 
 @keyframes bye {
   0% {

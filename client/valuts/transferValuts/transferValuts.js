@@ -2,9 +2,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { el } from 'redom';
 import { getAllCurriences } from '../../api/getAllCurriences';
-import { postCurrencyBuy } from '../../api/postCurrencyBuy';
-import { yourValuts } from '../yourValuts/yourValuts';
-// import { bottomIconSvg } from '../../assets/svg/bottom';
 
 export async function transferValuts() {
   // CREATE
@@ -27,33 +24,25 @@ export async function transferValuts() {
 
   // ACTION
   const { payload } = await getAllCurriences();
+
   for (const i of payload) {
     const optionTo = el('option.transferValuts__option', { value: i }, i);
     const optionFrom = el('option.transferValuts__option', { value: i }, i);
     from.append(optionFrom);
     to.append(optionTo);
   }
+
   sum.addEventListener('input', (e) => {
-    const regex = /^[0-9b]*$/;
+    const regex = /^[0-9b.]*$/;
     const inputText = e.target.value;
     if (!regex.test(inputText)) {
       e.target.value = inputText.slice(0, -1);
     }
+    container.classList.add('valut--hover');
+    if (inputText === '') container.classList.remove('valut--hover');
   });
 
   form.addEventListener('submit', (ev) => ev.preventDefault());
-  button.addEventListener('click', async () => {
-    const dat = await postCurrencyBuy(from.value, to.value, Number(sum.value));
-    const yourVal = document.querySelector('.yourValuts__container');
-    const middleLeft = document.querySelector('.allValuts__middle');
-    const newYour = await yourValuts(from.value, to.value);
-    yourVal.remove();
-    middleLeft.prepend(newYour);
-
-    console.log(yourVal);
-    console.log(dat);
-  });
-  console.log(payload);
 
   return container;
 }

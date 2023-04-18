@@ -93,6 +93,15 @@
   background-color: red;
 }
 
+.listCard__btn--delete {
+  @include btn_normal(16px, 's', '');
+  margin-left: auto;
+}
+
+.listCard__btn--delete:hover {
+  color: #BA0000;
+  background-color: white;
+}
 @media (min-width: 1600px) {
   .listCard-cardList {
    margin-left: 10%;

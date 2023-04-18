@@ -9,7 +9,7 @@ import axios from 'axios';
 import { el } from 'redom';
 
 import customSelect from 'custom-select';
-import { getCardId } from './utils';
+import { getCardId, alert } from './utils';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { header } from './header/header';
 import { entry } from './entry/entry';
@@ -23,47 +23,14 @@ import { allValuts } from './valuts/allValuts';
 import { bankMap } from './bankMap/bankMap';
 import { profile } from './profile/profile';
 import { errorApi } from './error/errorApi';
+import { removeAccount } from './api/removeAccount';
+import { postCurrencyBuy } from './api/postCurrencyBuy';
+import { yourValuts } from './valuts/yourValuts/yourValuts';
 
 window.addEventListener('beforeunload', () => {
   const child = document.body.children[1];
   child.classList.add('child--active');
 });
-
-export function alert(name, status) {
-  if (status === 'warning') {
-    const warnIcon = el('svg.icon--warning');
-    warnIcon.innerHTML += `
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g clip-path="url(#clip0_1_901)">
-    <path d="M12 3.94365L22.2338 21L1.76619 21L12 3.94365Z" fill="#BA0000" stroke="#BA0000" stroke-width="2"/>
-    <path d="M12 10L12 15M12 18L12 16.5" stroke="white" stroke-width="2"/>
-    </g>
-    <defs>
-    <clipPath id="clip0_1_901">
-    <rect width="24" height="24" fill="white"/>
-    </clipPath>
-    </defs>
-    </svg>
-    
-    `;
-    const text = el('p.text-warning', name);
-    const war = el('div.warningMain', warnIcon, text);
-    return war;
-  }
-
-  if (status === 'success') {
-    const successIcon = el('svg.icon--success');
-    successIcon.innerHTML += `
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 22C6.47967 21.994 2.00606 17.5204 2 12V11.8C2.10993 6.30455 6.63459 1.92797 12.1307 2.0009C17.6268 2.07382 22.0337 6.5689 21.9978 12.0654C21.9619 17.5618 17.4966 21.9989 12 22ZM7.41 11.59L6 13L10 17L18 9.00002L16.59 7.58002L10 14.17L7.41 11.59Z" fill="#76CA66"/>
-    </svg>
-    `;
-
-    const text = el('p.text--success', name);
-    const suc = el('div.successMain', successIcon, text);
-    return suc;
-  }
-}
 
 export function mainload() {
   const loader = el('svg.loader--profile');
@@ -94,7 +61,44 @@ export function mainload() {
     }, 300);
   }
 
+  window.addEventListener('mousemove', (event) => {
+    // HOVER CARD
+    const allCard = document.querySelectorAll('.card');
+
+    if (event.target.classList.contains('card__btn')) {
+      event.target.parentElement.classList.add('card--hover');
+    } else {
+      allCard.forEach((e) => { if (e.classList.contains('card--hover')) e.classList.remove('card--hover'); });
+    }
+  });
+
   window.addEventListener('mousedown', (event) => {
+    const cardDelete = document.querySelectorAll('.card--delete');
+    const btnLock = document.querySelectorAll('.btn--lock');
+    const btnDelete = document.querySelectorAll('.listCard__btn--delete');
+
+    function holdFunc(card) {
+      let hold = 0;
+      const deleteBtn = el('button.listCard__btn--delete', 'Удалить');
+      const allBtnNow = document.querySelectorAll('.card__btn');
+      const holden = setInterval(() => {
+        hold += 1;
+
+        if (hold === 3) {
+          card.classList.add('card--delete');
+          allBtnNow.forEach((e) => {
+            e.classList.add('btn--lock');
+          });
+          card.lastElementChild.remove();
+          card.append(deleteBtn);
+          clearInterval(holden);
+        }
+      }, 100);
+
+      card.addEventListener('mouseup', () => {
+        clearInterval(holden);
+      });
+    }
     // off transfer
     const inputTransfer = document?.querySelector(
       '.lookCardNewTransfer__localList',
@@ -108,6 +112,43 @@ export function mainload() {
         icon.classList.remove('js--icon-active');
         inputTransfer.remove();
       }, 100);
+    }
+
+    // DELETE CARD
+    if (!event.target.classList.contains('card--delete') && !event.target.classList.contains('card') && !event.target.classList.contains('card__account') && !event.target.classList.contains('card__balance') && !event.target.classList.contains('card__lastTrans') && !event.target.classList.contains('listCard__btn--delete')) {
+      cardDelete.forEach((e) => {
+        e.classList.remove('card--delete');
+        const btnCard = el('button.card__btn', 'Открыть');
+        btnLock.forEach((ev) => ev.classList.remove('btn--lock'));
+        e.lastElementChild.remove();
+        e.append(btnCard);
+      });
+    } else if (event.target.classList.contains('card')) {
+      const card = event.target;
+      card.addEventListener('mousedown', holdFunc(card));
+    }
+
+    if (event.target.classList.contains('card--delete')) {
+      const btnCard = el('button.card__btn', 'Открыть');
+
+      event.target.classList.remove('card--delete');
+      event.target.lastElementChild.remove();
+      event.target.append(btnCard);
+      btnCard.classList.add('btn--lock');
+
+      if (cardDelete.length < 2) {
+        btnCard.classList.remove('btn--lock');
+        btnLock.forEach((e) => e.classList.remove('btn--lock'));
+      }
+    }
+
+    if (event.target.classList.contains('listCard__btn--delete')) {
+      btnDelete.forEach((e) => e.addEventListener('click', () => {
+        const id = e.parentElement.firstElementChild.textContent;
+        removeAccount(id);
+        e.parentElement.remove();
+        if (cardDelete.length < 2) btnLock.forEach((ev) => ev.classList.remove('btn--lock'));
+      }));
     }
 
     // get card id
@@ -223,6 +264,81 @@ export function mainload() {
     document.body.append(headerMount);
     document.body.append(await allValuts().then((res) => { document.body.firstElementChild.remove(); return res; }));
     customSelect('select');
+
+    // ERROR CHECK
+    const button = document.querySelector('.transferValuts__button');
+    const from = document.querySelector('.transferValuts__from');
+    const to = document.querySelector('.transferValuts__to');
+    const sum = document.querySelector('.transferValuts__sum');
+    const isOpen = document.querySelectorAll('.custom-select-opener');
+    const warning = alert('Одинаковые валюты', 'warning');
+    const warningSum = alert('Вы не ввели сумму', 'warning');
+    const overDraft = alert('недостаточно средств', 'warning');
+
+    function removeError(e) {
+      const warningAll = document.querySelectorAll('.warningMain');
+
+      if (e.classList.contains('valutBorder--error')) {
+        from.previousElementSibling.classList.remove('valutBorder--error');
+        to.previousElementSibling.classList.remove('valutBorder--error');
+        warning.remove();
+      }
+      if (warningAll.length < 2) {
+        button.classList.remove('btn--lock');
+      }
+    }
+
+    isOpen.forEach((e) => e.addEventListener('click', () => removeError(e)));
+
+    sum.addEventListener('input', () => {
+      const warningAll = document.querySelectorAll('.warningMain');
+      if (sum.classList.contains('valutBorder--error')) {
+        sum.classList.remove('valutBorder--error');
+        warningSum.remove();
+        overDraft.remove();
+      }
+
+      if (warningAll.length < 1) {
+        button.classList.remove('btn--lock');
+      }
+    });
+
+    button.addEventListener('click', async () => {
+      if (from.value === to.value) {
+        const upError = document.querySelector('.transferValuts__up');
+
+        from.previousElementSibling.classList.add('valutBorder--error');
+        to.previousElementSibling.classList.add('valutBorder--error');
+
+        warning.classList.add('valut--warning');
+        upError.prepend(warning);
+        button.classList.add('btn--lock');
+      }
+
+      if (sum.value === '') {
+        sum.classList.add('valutBorder--error');
+        warningSum.classList.add('valut--warning');
+        sum.parentElement.prepend(warningSum);
+        button.classList.add('btn--lock');
+      }
+
+      if (from.value !== to.value && sum.value !== '') {
+        const date = await postCurrencyBuy(from.value, to.value, Number(sum.value));
+        if (date.error === 'Overdraft prevented') {
+          sum.classList.add('valutBorder--error');
+          overDraft.classList.add('valut--warning');
+          sum.parentElement.prepend(overDraft);
+          button.classList.add('btn--lock');
+          return;
+        }
+
+        const yourVal = document.querySelector('.yourValuts__container');
+        const middleLeft = document.querySelector('.allValuts__middle');
+        const newYour = await yourValuts(from.value, to.value);
+        yourVal.remove();
+        middleLeft.prepend(newYour);
+      }
+    });
   }
 
   async function windowMap() {

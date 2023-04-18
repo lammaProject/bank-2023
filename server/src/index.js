@@ -155,6 +155,13 @@ app.post('/create-account', (req, res) => {
   res.end(response(newAccount));
 });
 
+app.post('/create-account/delete', authCheck, (req, res) => {
+  const { id } = (req.body || {});
+  delete data.accounts[id];
+  writeData(data);
+  res.end(response('done'));
+});
+
 app.post('/transfer-funds', authCheck, (req, res) => {
   const { from, to, amount: rawAmount } = (req.body || {});
   const fromAccount = data.accounts[from];
