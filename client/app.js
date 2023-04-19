@@ -61,8 +61,8 @@ export function mainload() {
     }, 300);
   }
 
+  // HOVER CARD
   window.addEventListener('mousemove', (event) => {
-    // HOVER CARD
     const allCard = document.querySelectorAll('.card');
 
     if (event.target.classList.contains('card__btn')) {
@@ -72,6 +72,7 @@ export function mainload() {
     }
   });
 
+  // СОБЫТИЯ МЫШИ
   window.addEventListener('mousedown', (event) => {
     const cardDelete = document.querySelectorAll('.card--delete');
     const btnLock = document.querySelectorAll('.btn--lock');
