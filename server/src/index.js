@@ -20,8 +20,8 @@ const expressWs = require('express-ws')(app);
 const port = 3001;
 
 const AUTH_DATA = Object.freeze({
-  login: 'developer',
-  password: 'skillbox',
+  login: 'anton',
+  password: 'anton',
   token: 'ZGV2ZWxvcGVyOnNraWxsYm94',
 });
 

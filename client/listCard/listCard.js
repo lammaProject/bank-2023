@@ -4,7 +4,8 @@
 import { el } from 'redom';
 import { getAccount } from '../api/getAccounts';
 // eslint-disable-next-line import/no-cycle
-import { listCardNav } from './listCardNav/listCardNav';
+// import { listCardNav } from './listcardnav/listCardNav';
+import { listCardNav } from './listcardnav/listCardNav';
 
 export async function listCard() {
   const accounts = await getAccount();
